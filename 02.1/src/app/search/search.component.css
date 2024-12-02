@@ -1,0 +1,17 @@
+.card-img-top {
+    height: 180px;
+    object-fit: cover;
+  }
+
+input{
+    width: 70%;
+    font-size: 30px;
+    margin-left: 15%;
+}
+
+button{
+    margin-left: 5%;
+    font-size: 25px;
+    margin-top: -10px;
+}
+  

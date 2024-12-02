@@ -1,5 +1,10 @@
-<div class="container mt-4">
-    <h2>Risultati della ricerca</h2>
+<div class="ricerca">
+    <input type="text" [(ngModel)]="searchTerm" placeholder="Cerca un prodotto">
+    <button class="btn btn-primary" (click)="onSearch()">Cerca</button>
+  </div>
+  <div class="container mt-4">
+    <h2 align="center">Risultati della ricerca</h2>
+    <br>
     <div class="row">
       <div class="col-md-4 mb-4" *ngFor="let product of results.products">
         <div class="card" style="width: 18rem;">
