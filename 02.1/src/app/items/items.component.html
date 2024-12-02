@@ -1,1 +1,11 @@
-<p>items works!</p>
+<div class="container mt-4">
+    <h2>Dettagli del Prodotto</h2>
+    <div *ngIf="productDetails; else loading">
+      <pre>{{ productDetails | json }}</pre>
+    </div>
+    <ng-template #loading>
+      <p>Caricamento in corso...</p>
+    </ng-template>
+    <a routerLink="/search" class="btn btn-secondary mt-3">Torna alla ricerca</a>
+  </div>
+  
