@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { SearchService } from '../api.service';
+
 
 @Component({
   selector: 'app-search',
@@ -7,17 +8,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent {
+  searchTerm: string = '';
+  results: any;
 
-  
+  constructor(private searchService: SearchService) {}
 
-  constructor(private router: Router) {}
-
-  
-  
-  searchCard(ricerca : HTMLInputElement): void {
-    if(ricerca){
-      this.router.navigate([`/search/${ricerca.value}`]);
-    }
+  onSearch() {
+    this.searchService.searchProducts(this.searchTerm).subscribe(response => {
+      this.results = response;
+      console.log(response);
+    });
   }
-
 }

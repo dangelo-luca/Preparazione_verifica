@@ -1,2 +1,20 @@
-<input placeholder="Search for a card" #ricerca/>
-<button (click)="searchCard(ricerca)">Search</button>
+<div class="container mt-4">
+    <h2>Risultati della ricerca</h2>
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let product of results.products">
+        <div class="card" style="width: 18rem;">
+          <img *ngIf="product.image_url" [src]="product.image_url" class="card-img-top" 
+               [alt]="product.product_name || 'Immagine non disponibile'" />
+          <img *ngIf="!product.image_url" src="assets/no-image.png" class="card-img-top" alt="Nessuna immagine disponibile" />
+          <div class="card-body">
+            <h5 class="card-title">{{ product.product_name || 'Nome non disponibile' }}</h5>
+            <p class="card-text">
+              <strong>Marca:</strong> {{ product.brands || 'Non specificata' }}
+            </p>
+            <a [routerLink]="['/product', product.id]" class="btn btn-primary">Dettagli prodotto</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
