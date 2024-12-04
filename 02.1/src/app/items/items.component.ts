@@ -4,10 +4,10 @@ import { SearchService } from '../api.service';
 
 @Component({
   selector: 'app-item',
-  templateUrl: './item.component.html',
-  styleUrls: ['./item.component.css']
+  templateUrl: './items.component.html',
+  styleUrls: ['./items.component.css']
 })
-export class ItemComponent implements OnInit {
+export class ItemsComponent implements OnInit {
   productId: string | null = null;
   productDetails: any;
 
@@ -17,14 +17,14 @@ export class ItemComponent implements OnInit {
     // Recupera l'ID del prodotto dalla rotta
     this.productId = this.route.snapshot.paramMap.get('id');
     if (this.productId) {
-      this.getProductDetails(this.productId);
+      this.loadProductDetails(this.productId);
     }
   }
 
-  getProductDetails(id: string): void {
-    this.searchService.getProductById(id).subscribe(response => {
+  loadProductDetails(id: string): void {
+    this.searchService.getProductById(id).subscribe((response) => {
       this.productDetails = response;
-      console.log(response); // Controlla il risultato nella console
+      console.log(this.productDetails); // Debug della risposta
     });
   }
 }

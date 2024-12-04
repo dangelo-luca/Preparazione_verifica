@@ -1,11 +1,32 @@
 <div class="container mt-4">
-    <h2>Dettagli del Prodotto</h2>
-    <div *ngIf="productDetails; else loading">
-      <pre>{{ productDetails | json }}</pre>
-    </div>
-    <ng-template #loading>
-      <p>Caricamento in corso...</p>
-    </ng-template>
-    <a routerLink="/search" class="btn btn-secondary mt-3">Torna alla ricerca</a>
-  </div>
+  <h2>Dettagli Prodotto</h2>
   
+  <!-- Verifica se i dettagli del prodotto sono stati caricati -->
+  <div *ngIf="productDetails; else loading">
+    <div class="card">
+      <div class="card-header">
+        <h3>{{ productDetails.product.product_name || 'Nome non disponibile' }}</h3>
+      </div>
+      <div class="card-body">
+        <!-- Immagine del prodotto -->
+        <img
+          *ngIf="productDetails.product.image_url"
+          [src]="productDetails.product.image_url"
+          alt="{{ productDetails.product.product_name }}"
+          class="img-fluid mb-3"
+        />
+        <p><strong>Marca:</strong> {{ productDetails.product.brands || 'N/A' }}</p>
+        <p><strong>Categoria:</strong> {{ productDetails.product.categories || 'N/A' }}</p>
+        <p><strong>Descrizione:</strong> {{ productDetails.product.generic_name || 'Non disponibile' }}</p>
+        <p><strong>quantità:</strong> {{ productDetails.product.quantity || 'Non disponibile' }}</p>
+        <p><strong>packaging:</strong> {{ productDetails.product.packaging || 'Non disponibile' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Messaggio di caricamento -->
+  <ng-template #loading>
+    <p>Caricamento in corso...</p>
+  </ng-template>
+  <button routerLink="/search" class="btn btn-danger mt-3">Torna alla ricerca</button>
+</div>

@@ -6,15 +6,18 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class SearchService {
-  getProductById(id: string) {
-    throw new Error('Method not implemented.');
-  }
+  private apiUrl = 'https://world.openfoodfacts.org/api/v0/product/';
 
   constructor(private http: HttpClient) {}
 
   searchProducts(searchTerm: string): Observable<any> {
     const url = `https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerm}&page_size=10&json=true`;
     return this.http.get<any>(url);
+  }
+
+  getProductById(id: string): Observable<any> { // Deve restituire un Observable
+    const url = `${this.apiUrl}${id}`;
+    return this.http.get<any>(url); // Restituisce un Observable della risposta HTTP
   }
 }
 
